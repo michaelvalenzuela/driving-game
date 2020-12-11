@@ -3,6 +3,7 @@ body {
 }
 
 .f1 {
+  position: absolute;
   width: 20%;
   height: 20%;
 }
