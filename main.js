@@ -6,7 +6,8 @@ let car = {
   locationY: position.y,
   isStarted: false,
   moveX: 1,
-  moveY: 0
+  moveY: 0,
+  speed: 1
 }
 
 
@@ -39,6 +40,14 @@ document.addEventListener("keydown", function(e){
       stopCar();
     }
   }
+  else if(e.key === "+"){
+    car.speed += 1;
+  }
+  else if(e.key === "-"){
+    if(car.speed > 1){
+      car.speed -= 1
+    }
+  }
 });
 
 function startCar(){
@@ -52,8 +61,8 @@ function stopCar(){
 }
 
 function moveCar(){
-  car.locationX += car.moveX;
-  car.locationY += car.moveY;
+  car.locationX += (car.moveX * car.speed);
+  car.locationY += (car.moveY * car.speed);
   $carImg.style.top = car.locationY + "px";
   $carImg.style.left = car.locationX + "px";
 }
