@@ -3,12 +3,12 @@ let moveCarId = null;
 let position = $carImg.getBoundingClientRect();
 let car = {
   locationX: position.x,
-  locationY: position.y
+  locationY: position.y,
+  isStarted: false
 }
 
 
 document.addEventListener("keydown", function(e){
-  console.log(e);
   if(e.key === "ArrowDown"){
     $carImg.style.transform = "rotate(0deg) rotate(90deg)";
   }
@@ -22,15 +22,26 @@ document.addEventListener("keydown", function(e){
     $carImg.style.transform = "rotate(0deg) rotate(-90deg)";
   }
   else if (e.key === " "){
-    startCar();
+    if(!car.isStarted){
+      startCar();
+    }
+    else {
+      stopCar();
+    }
   }
 });
 
 function startCar(){
-  moveCarId = setInterval(function(e){
+  car.isStarted = true;
+  moveCarId = setInterval(function(){
     car.locationX += 1;
     car.locationY += 0;
     $carImg.style.top = car.locationY + "px";
     $carImg.style.left = car.locationX + "px";
   }, 16);
+}
+
+function stopCar(){
+  car.isStarted = false;
+  clearInterval(moveCarId);
 }
