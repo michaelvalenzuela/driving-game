@@ -3,7 +3,8 @@ let moveCarId = null;
 let position = $carImg.getBoundingClientRect();
 let car = {
   locationX: position.x,
-  locationY: position.y
+  locationY: position.y,
+  isStarted: false
 }
 
 
@@ -27,7 +28,7 @@ document.addEventListener("keydown", function(e){
 });
 
 function startCar(){
-  moveCarId = setInterval(function(e){
+  moveCarId = setInterval(function(){
     car.locationX += 1;
     car.locationY += 0;
     $carImg.style.top = car.locationY + "px";
